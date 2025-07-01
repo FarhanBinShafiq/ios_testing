@@ -1,0 +1,9 @@
+# Cordova build stuff
+platforms/
+plugins/
+node_modules/
+www/plugins/
+www/cordova.*
+build/
+.idea/
+.gradle/
