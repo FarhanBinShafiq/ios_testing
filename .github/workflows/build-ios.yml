@@ -33,7 +33,7 @@ jobs:
       run: cordova build ios --release --device
 
     - name: Upload .ipa file as artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: ios-app
         path: platforms/ios/build/device/*.ipa
