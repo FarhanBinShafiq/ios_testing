@@ -2,7 +2,7 @@
   "ios": {
     "release": {
       "codeSignIdentity": "iPhone Developer",
-      "provisioningProfile": "none",
+      "developmentTeam": "",
       "packageType": "ad-hoc"
     }
   }
