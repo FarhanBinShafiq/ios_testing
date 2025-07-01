@@ -1,0 +1,9 @@
+{
+  "ios": {
+    "release": {
+      "codeSignIdentity": "iPhone Developer",
+      "provisioningProfile": "none",
+      "packageType": "ad-hoc"
+    }
+  }
+}

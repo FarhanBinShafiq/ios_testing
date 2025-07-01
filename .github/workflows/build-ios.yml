@@ -1,0 +1,40 @@
+name: Build Cordova iOS
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-ios:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Install Cordova CLI
+      run: npm install -g cordova
+
+    - name: Install project dependencies
+      run: npm install
+
+    - name: Add iOS platform
+      run: |
+        if [ ! -d "platforms/ios" ]; then
+          cordova platform add ios
+        fi
+
+    - name: Build iOS App
+      run: cordova build ios --release --device
+
+    - name: Upload .ipa file as artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: ios-app
+        path: platforms/ios/build/device/*.ipa
+      if: always()
