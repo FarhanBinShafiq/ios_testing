@@ -20,19 +20,22 @@ jobs:
     - name: 📦 Install Cordova CLI
       run: npm install -g cordova
 
-    - name: 📦 Install Dependencies
+    - name: 📦 Install project dependencies
       run: npm install
 
-    - name: ➕ Add iOS platform
-      run: cordova platform add ios
+    - name: ➕ Add iOS platform (if missing)
+      run: |
+        if [ ! -d "platforms/ios" ]; then
+          cordova platform add ios
+        fi
 
-    - name: 🛠️ Build iOS App
+    - name: 🛠️ Build iOS App (Release, Device)
       run: cordova build ios --release --device
 
-    - name: 🗂️ List output for debugging
+    - name: 🧪 Debug: List output folders
       run: ls -R platforms/ios/build
 
-    - name: 🚀 Upload .ipa artifact
+    - name: 🚀 Upload .ipa file as artifact
       uses: actions/upload-artifact@v3
       with:
         name: ios-app
